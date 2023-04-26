@@ -1,0 +1,23 @@
+@layer components {
+    .cards{
+        @apply w-full h-[90%] relative;
+    }
+    .card{
+        @apply w-[812px] h-[440px] rounded-xl absolute transition-all ease-out duration-[3000ms];
+    }
+    .card-left{
+        @apply z-10 translate-y-12;
+    }
+    .card-center{
+        @apply translate-x-10 w-[920px] h-[540px] z-30;
+    }
+    .card-right{
+        @apply translate-x-48 z-20 translate-y-12;
+    }
+    .indicatorButton{
+        @apply border-2 border-gray-500 bg-transparent rounded-full p-1 cursor-pointer;
+    }
+    .current{
+        @apply bg-gray-500;
+    }
+}

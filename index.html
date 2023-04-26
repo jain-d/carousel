@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel</title>
+    <link href="output.css" rel="stylesheet">
+
+
+</head>
+<body><br>
+    <div class="container">
+        <div class="w-[1006px] h-[600px] flex flex-col mx-auto">
+            <div class="cards">
+                <button id="prevButton" class="text-3xl absolute top-[240px] left-[10px] text-white z-30"><</button>
+                <div class="card card-one card-left bg-[url('./assets/sample-img1.jpg')] bg-cover"></div>
+                <div class="card card-two card-center bg-[url('./assets/sample-img2.jpg')] bg-cover"></div>
+                <div class="card card-three card-right bg-[url('./assets/sample-img3.jpg')] bg-cover"></div>
+                <button id="nextButton" class="text-3xl absolute top-[240px] left-[970px] text-white z-30">></button>
+            </div>
+            <div class="mt-4 flex justify-center gap-1">
+                <button class="indicatorButton indicatorButton1"></button>
+                <button class="indicatorButton indicatorButton2 current"></button>
+                <button class="indicatorButton indicatorButton3"></button>
+            </div>
+        </div>
+    </div> 
+
+    <script src="./app.js"></script>
+</body>
+</html>
+
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="flex border-4 relative border-gray-700">
+    <div class="w-[700px] h-[400px] relative z-0  border-2 border-black rounded-xl  bg-slate-500">1</div>
+    <div class="w-[1000px] h-[580px] absolute z-10 top-0 left-3 bottom-0 border-2 border-black rounded-xl  bg-slate-500">2</div>
+    <div class="w-[700px] h-[400px] relative z-0  border-2 border-black rounded-xl  bg-slate-500">3</div>
+</div> -->
