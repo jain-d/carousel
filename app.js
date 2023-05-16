@@ -7,8 +7,7 @@ let controller = document.querySelector("#controller");
 let play = controller.querySelector("#play");
 let pause = controller.querySelector("#pause");
 let slide = true;
-let id,
-  record = 0;
+let id, record = 0;
 let card = Array.from(cards);
 
 for (f = 0; f < card.length; f++) {

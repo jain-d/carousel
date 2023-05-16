@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.1.8 | MIT License | https://tailwindcss.com
+! tailwindcss v3.1.6 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -355,6 +355,13 @@ input::-moz-placeholder, textarea::-moz-placeholder {
   /* 2 */
 }
 
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
 input::placeholder,
 textarea::placeholder {
   opacity: 1;
@@ -626,6 +633,7 @@ video {
 }
 
 .card-hidden {
+  z-index: 0;
   --tw-translate-x: 6rem;
   --tw-translate-y: 3rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -650,16 +658,16 @@ video {
   position: absolute;
 }
 
-.top-\[240px\] {
-  top: 240px;
+.top-\[250px\] {
+  top: 250px;
 }
 
-.left-\[10px\] {
-  left: 10px;
+.left-2 {
+  left: 0.5rem;
 }
 
-.left-\[970px\] {
-  left: 970px;
+.left-\[1030px\] {
+  left: 1030px;
 }
 
 .z-30 {
@@ -673,10 +681,6 @@ video {
 
 .mt-4 {
   margin-top: 1rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
 }
 
 .flex {
@@ -697,10 +701,6 @@ video {
 
 .w-\[1006px\] {
   width: 1006px;
-}
-
-.w-9 {
-  width: 2.25rem;
 }
 
 .w-8 {
