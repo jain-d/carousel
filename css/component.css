@@ -3,16 +3,19 @@
         @apply w-full h-[90%] relative;
     }
     .card{
-        @apply w-[812px] h-[440px] rounded-xl absolute transition-all ease-out duration-[3000ms];
+        @apply w-[812px] h-[440px] rounded-xl absolute transition-all ease-out duration-[1000ms];
     }
     .card-left{
-        @apply z-10 translate-y-12;
+        @apply z-10 translate-y-12 opacity-50;
     }
     .card-center{
-        @apply translate-x-10 w-[920px] h-[540px] z-30;
+        @apply translate-x-20 w-[920px] h-[540px] z-30;
     }
     .card-right{
-        @apply translate-x-48 z-20 translate-y-12;
+        @apply translate-x-64 z-20 translate-y-12 opacity-50;
+    }
+    .card-hidden {
+        @apply translate-x-24 translate-y-12;
     }
     .indicatorButton{
         @apply border-2 border-gray-500 bg-transparent rounded-full p-1 cursor-pointer;
@@ -20,4 +23,5 @@
     .current{
         @apply bg-gray-500;
     }
+
 }

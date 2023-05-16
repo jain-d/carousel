@@ -1,101 +1,80 @@
-const contents=document.querySelector('.cards');
-const nextButton=document.querySelector('#nextButton');
-const prevButton=document.querySelector('#prevButton');
-const indicatorButton1=document.querySelector('.indicatorButton1')
-const indicatorButton2=document.querySelector('.indicatorButton2')
-const indicatorButton3=document.querySelector('.indicatorButton3')
-const cardOne= contents.querySelector('.card-one');
-const cardTwo= contents.querySelector('.card-two');
-const cardThree= contents.querySelector('.card-three');
-nextButton.addEventListener('click', ()=>{
-    const mainCard= contents.querySelector('.card-center');
-    const prevCard= contents.querySelector('.card-left');
-    const nextCard= contents.querySelector('.card-right');
+const contents = document.querySelector(".cards");
+const nextButton = document.querySelector("#nextButton");
+const prevButton = document.querySelector("#prevButton");
+const indicator = document.querySelector(".indicator");
+let cards = contents.querySelectorAll("div");
+let slide = true;
+let id;
+let card = Array.from(cards);
 
-    prevCard.classList.toggle('card-left');
-    prevCard.classList.toggle('card-right');
-    mainCard.classList.toggle('card-center');
-    mainCard.classList.toggle('card-left');
-    nextCard.classList.toggle('card-right');
-    nextCard.classList.toggle('card-center');
-    targetButton();
-})
+for (f = 0; f < card.length; f++) {
+  const indicatorBtn = document.createElement("button");
+  indicatorBtn.classList.add("indicatorButton");
+  indicator.appendChild(indicatorBtn);
+}
+let indicatorButtons = indicator.querySelectorAll("button");
+let indicatorButton = Array.from(indicatorButtons);
+console.log(indicatorButton);
+shuffle();
+initiateSlideshow();
+function shuffle() {
+  for (i = 0; i < card.length; i++) {
+    switch (i) {
+      case 0:
+        card[i].classList.remove("card-center", "card-right", "card-hidden");
+        card[i].classList.add("card-left");
+        continue;
 
-prevButton.addEventListener('click',()=>{
-    const mainCard= contents.querySelector('.card-center');
-    const prevCard= contents.querySelector('.card-left');
-    const nextCard= contents.querySelector('.card-right');
+      case 1:
+        card[i].classList.remove("card-left", "card-right");
+        card[i].classList.add("card-center");
+        continue;
 
-    prevCard.classList.toggle('card-left');
-    prevCard.classList.toggle('card-center');
-    mainCard.classList.toggle('card-center');
-    mainCard.classList.toggle('card-right');
-    nextCard.classList.toggle('card-right');
-    nextCard.classList.toggle('card-left');
-    targetButton();
-})
+      case 2:
+        card[i].classList.remove("card-center", "card-left", "card-hidden");
+        card[i].classList.add("card-right");
+        continue;
 
-indicatorButton1.addEventListener('click',()=>{
-
-    cardOne.classList.remove('card-left');
-    cardOne.classList.remove('card-right');
-    cardOne.classList.add('card-center');
-    cardTwo.classList.remove('card-left');
-    cardTwo.classList.remove('card-center');
-    cardTwo.classList.add('card-right');
-    cardThree.classList.remove('card-center');
-    cardThree.classList.remove('card-right');
-    cardThree.classList.add('card-left');
-    targetButton();
-
-})
-indicatorButton2.addEventListener('click',()=>{
-    
-    cardOne.classList.remove('card-center');
-    cardOne.classList.remove('card-right');
-    cardOne.classList.add('card-left');
-    cardTwo.classList.remove('card-left');
-    cardTwo.classList.remove('card-right');
-    cardTwo.classList.add('card-center');
-    cardThree.classList.remove('card-center');
-    cardThree.classList.remove('card-left');
-    cardThree.classList.add('card-right');
-    targetButton();
-    
-})
-indicatorButton3.addEventListener('click',()=>{
-    
-    cardOne.classList.remove('card-left');
-    cardOne.classList.remove('card-center');
-    cardOne.classList.add('card-right');
-    cardTwo.classList.remove('card-right');
-    cardTwo.classList.remove('card-center');
-    cardTwo.classList.add('card-left');
-    cardThree.classList.remove('card-left');
-    cardThree.classList.remove('card-right');
-    cardThree.classList.add('card-center');
-    targetButton();
-    
-})
-const targetButton=()=>{
-    if(cardOne.classList.contains('card-center'))
-    {
-        indicatorButton2.classList.remove('current');
-        indicatorButton3.classList.remove('current');
-        indicatorButton1.classList.add('current');
+      default:
+        card[i].classList.remove("card-left", "card-right");
+        card[i].classList.add("card-hidden");
     }
+  }
+  indicatorButtonSelect();
+}
 
-    if(cardTwo.classList.contains('card-center'))
-    {
-        indicatorButton1.classList.remove('current');
-        indicatorButton3.classList.remove('current');
-        indicatorButton2.classList.add('current');
+function indicatorButtonSelect() {
+  for (x = 0; x < card.length; x++) {
+    if (card[x].classList.contains("card-center")) {
+      indicatorButton[x].classList.add("current");
     }
+  }
+}
 
-    if(cardThree.classList.contains('card-center'))
-    {
-        indicatorButton1.classList.remove('current');
-        indicatorButton2.classList.remove('current');
-        indicatorButton3.classList.add('current');
-    }
+prevButton.addEventListener("click", () => {
+  hold = card.pop();
+  card.unshift(hold);
+  shuffle();
+});
+nextButton.addEventListener("click", next);
+
+function initiateSlideshow() {
+  controller.innerHTML = "STOP";
+  id = setInterval(next, 2000);
+}
+controller.addEventListener("click", () => {
+  slide = !slide;
+  if (slide) {
+    initiateSlideshow();
+  } else {
+    controller.innerHTML = "START";
+    clearInterval(id);
+  }
+});
+function next() {
+  console.log(card);  
+  hold = card.shift();
+  card.push(hold);
+  shuffle();
+  console.log(card);
 }
