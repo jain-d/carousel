@@ -3,8 +3,12 @@ const nextButton = document.querySelector("#nextButton");
 const prevButton = document.querySelector("#prevButton");
 const indicator = document.querySelector(".indicator");
 let cards = contents.querySelectorAll("div");
+let controller = document.querySelector("#controller");
+let play = controller.querySelector("#play");
+let pause = controller.querySelector("#pause");
 let slide = true;
-let id;
+let id,
+  record = 0;
 let card = Array.from(cards);
 
 for (f = 0; f < card.length; f++) {
@@ -14,7 +18,6 @@ for (f = 0; f < card.length; f++) {
 }
 let indicatorButtons = indicator.querySelectorAll("button");
 let indicatorButton = Array.from(indicatorButtons);
-console.log(indicatorButton);
 shuffle();
 initiateSlideshow();
 function shuffle() {
@@ -44,9 +47,18 @@ function shuffle() {
 }
 
 function indicatorButtonSelect() {
+  const contents = document.querySelector(".cards");
+  let cards = contents.querySelectorAll("div");
+  let card = Array.from(cards);
+
+  if (indicatorButton[record].classList.contains("current"))
+    indicatorButton[record].classList.remove("current");
+
   for (x = 0; x < card.length; x++) {
     if (card[x].classList.contains("card-center")) {
       indicatorButton[x].classList.add("current");
+      record = x;
+      break;
     }
   }
 }
@@ -59,7 +71,8 @@ prevButton.addEventListener("click", () => {
 nextButton.addEventListener("click", next);
 
 function initiateSlideshow() {
-  controller.innerHTML = "STOP";
+  play.classList.toggle("hidden");
+  pause.classList.toggle("hidden");
   id = setInterval(next, 2000);
 }
 controller.addEventListener("click", () => {
@@ -67,14 +80,13 @@ controller.addEventListener("click", () => {
   if (slide) {
     initiateSlideshow();
   } else {
-    controller.innerHTML = "START";
+    pause.classList.toggle("hidden");
+    play.classList.toggle("hidden");
     clearInterval(id);
   }
 });
 function next() {
-  console.log(card);  
   hold = card.shift();
   card.push(hold);
   shuffle();
-  console.log(card);
 }
