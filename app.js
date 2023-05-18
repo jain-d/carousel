@@ -7,10 +7,10 @@ let controller = document.querySelector("#controller");
 let play = controller.querySelector("#play");
 let pause = controller.querySelector("#pause");
 let slide = true;
-let id, id2,
+let id,
   record = 0, time = 5, timer;
 let card = Array.from(cards);
-let tick = Array.from(document.querySelectorAll('.timer'));
+
 for (f = 0; f < card.length; f++) {
   const indicatorBtn = document.createElement("button");
   indicatorBtn.classList.add("indicatorButton");
@@ -98,32 +98,23 @@ controller.addEventListener("click", () => {
     pause.classList.toggle("hidden");
     play.classList.toggle("hidden");
     clearInterval(id);
-    clearInterval(id2);
   }
 });
 function next() {
-  timer = time;
-  ticker();
+  // timer = time;
+  // ticker();
   hold = card.shift();
   card.push(hold);
   shuffle();
 }
-function ticker(){
-  const contents = document.querySelector(".cards");
-  let cards = contents.querySelectorAll("figure");
-  let card = Array.from(cards);
-  let t;
-  id2 = setInterval(()=>{
-    timer-=1;
-    for(t=0;t<card.length;t++) {
-      if(card[t].classList.contains('card-center'))
-      {
-        break;
-      }
-    }
-    tick[t].innerHTML = timer;
-    if(timer<=1) {
-      clearInterval(id2);
-    }
-  },1000);
-}
+// function ticker(){
+//   id2 = setInterval(()=>{
+//     timer-=1;
+//     document.querySelector('.timer').innerHTML = timer;
+//     console.log(document.querySelector('.timer'));
+    
+//     if(timer==1)
+//       clearInterval(id2);
+
+//   },1000);
+// }
