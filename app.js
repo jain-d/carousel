@@ -7,7 +7,8 @@ let controller = document.querySelector("#controller");
 let play = controller.querySelector("#play");
 let pause = controller.querySelector("#pause");
 let slide = true;
-let id, record = 0;
+let id,
+  record = 0;
 let card = Array.from(cards);
 
 for (f = 0; f < card.length; f++) {
@@ -63,7 +64,7 @@ function indicatorButtonSelect() {
 }
 
 prevButton.addEventListener("click", () => {
-  if(slide) {
+  if (slide) {
     clearInterval(id);
   }
   hold = card.pop();
@@ -72,7 +73,7 @@ prevButton.addEventListener("click", () => {
   initiateSlideshow();
 });
 nextButton.addEventListener("click", () => {
-  if(slide) {
+  if (slide) {
     clearInterval(id);
   }
   next();
@@ -80,7 +81,6 @@ nextButton.addEventListener("click", () => {
 });
 
 function initiateSlideshow() {
-  
   id = setInterval(next, 5000);
 }
 controller.addEventListener("click", () => {
