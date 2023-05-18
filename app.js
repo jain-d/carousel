@@ -2,15 +2,15 @@ const contents = document.querySelector(".cards");
 const nextButton = document.querySelector("#nextButton");
 const prevButton = document.querySelector("#prevButton");
 const indicator = document.querySelector(".indicator");
-let cards = contents.querySelectorAll("div");
+let cards = contents.querySelectorAll("figure");
 let controller = document.querySelector("#controller");
 let play = controller.querySelector("#play");
 let pause = controller.querySelector("#pause");
 let slide = true;
-let id,
-  record = 0;
+let id, id2,
+  record = 0, time = 5, timer;
 let card = Array.from(cards);
-
+let tick = Array.from(document.querySelectorAll('.timer'));
 for (f = 0; f < card.length; f++) {
   const indicatorBtn = document.createElement("button");
   indicatorBtn.classList.add("indicatorButton");
@@ -48,7 +48,7 @@ function shuffle() {
 
 function indicatorButtonSelect() {
   const contents = document.querySelector(".cards");
-  let cards = contents.querySelectorAll("div");
+  let cards = contents.querySelectorAll("figure");
   let card = Array.from(cards);
 
   if (indicatorButton[record].classList.contains("current"))
@@ -64,24 +64,29 @@ function indicatorButtonSelect() {
 }
 
 prevButton.addEventListener("click", () => {
-  if (slide) {
+  if (slide)
     clearInterval(id);
-  }
+  
   hold = card.pop();
   card.unshift(hold);
   shuffle();
-  initiateSlideshow();
+
+  if (slide)
+    initiateSlideshow();
 });
 nextButton.addEventListener("click", () => {
-  if (slide) {
+  if (slide)
     clearInterval(id);
-  }
+
   next();
-  initiateSlideshow();
+
+
+  if(slide)
+    initiateSlideshow();
 });
 
 function initiateSlideshow() {
-  id = setInterval(next, 5000);
+  id = setInterval(next, (time*1000));
 }
 controller.addEventListener("click", () => {
   slide = !slide;
@@ -93,10 +98,32 @@ controller.addEventListener("click", () => {
     pause.classList.toggle("hidden");
     play.classList.toggle("hidden");
     clearInterval(id);
+    clearInterval(id2);
   }
 });
 function next() {
+  timer = time;
+  ticker();
   hold = card.shift();
   card.push(hold);
   shuffle();
+}
+function ticker(){
+  const contents = document.querySelector(".cards");
+  let cards = contents.querySelectorAll("figure");
+  let card = Array.from(cards);
+  let t;
+  id2 = setInterval(()=>{
+    timer-=1;
+    for(t=0;t<card.length;t++) {
+      if(card[t].classList.contains('card-center'))
+      {
+        break;
+      }
+    }
+    tick[t].innerHTML = timer;
+    if(timer<=1) {
+      clearInterval(id2);
+    }
+  },1000);
 }
