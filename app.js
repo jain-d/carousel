@@ -63,20 +63,31 @@ function indicatorButtonSelect() {
 }
 
 prevButton.addEventListener("click", () => {
+  if(slide) {
+    clearInterval(id);
+  }
   hold = card.pop();
   card.unshift(hold);
   shuffle();
+  initiateSlideshow();
 });
-nextButton.addEventListener("click", next);
+nextButton.addEventListener("click", () => {
+  if(slide) {
+    clearInterval(id);
+  }
+  next();
+  initiateSlideshow();
+});
 
 function initiateSlideshow() {
-  play.classList.toggle("hidden");
-  pause.classList.toggle("hidden");
-  id = setInterval(next, 2000);
+  
+  id = setInterval(next, 5000);
 }
 controller.addEventListener("click", () => {
   slide = !slide;
   if (slide) {
+    pause.classList.toggle("hidden");
+    play.classList.toggle("hidden");
     initiateSlideshow();
   } else {
     pause.classList.toggle("hidden");
