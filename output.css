@@ -827,6 +827,15 @@ video {
   background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
 
+.bg-slate-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+}
+
+.bg-slate-500\/75 {
+  background-color: rgb(100 116 139 / 0.75);
+}
+
 .bg-\[url\(\'\.\/assets\/sample-img1\.jpg\'\)\] {
   background-image: url('./assets/sample-img1.jpg');
 }
